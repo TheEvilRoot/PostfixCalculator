@@ -8,6 +8,7 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.list.customListAdapter
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.theevilroot.postfixcalculator.R
+import com.theevilroot.postfixcalculator.internal.PostfixError
 import com.theevilroot.postfixcalculator.internal.visible
 import com.theevilroot.postfixcalculator.licenses.LicensesAdapter
 import com.theevilroot.postfixcalculator.links.LinksAdapter
@@ -25,7 +26,7 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
 
     private val linksProvider: LinksProvider by instance()
     private val model: PostfixModel by instance()
-    private val linksAdatper: LinksAdapter by instance()
+    private val linksAdapter: LinksAdapter by instance()
     private val licensesAdapter: LicensesAdapter by instance()
     private val presenter: MainPresenter by lazy { MainPresenterImpl(this@MainActivity, model) }
 
@@ -36,7 +37,7 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
 
         setLoading(false)
         setOutput("")
-        setError("")
+        setError()
         blockControl(false)
         blockInput(false)
 
@@ -66,9 +67,16 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
         }
     }
 
-    override fun setError(message: String, throwable: Throwable?) {
-        errorView.text = message
-        throwable?.printStackTrace()
+    override fun setError(error: PostfixError?, message: String) {
+        if (error == null) {
+            errorView.text = ""
+        } else {
+            if (error == PostfixError.Other) {
+                errorView.text = getString(error.res, message)
+            } else {
+                errorView.text = getString(error.res)
+            }
+        }
     }
 
     override fun setOutput(output: String) {
@@ -86,7 +94,7 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
         MaterialDialog(this@MainActivity, BottomSheet()).show {
             title(R.string.app_name)
             message(R.string.copyright)
-            customListAdapter(linksAdatper)
+            customListAdapter(linksAdapter)
             positiveButton(R.string.licenses_title) { showLicenses() }
         }
     }

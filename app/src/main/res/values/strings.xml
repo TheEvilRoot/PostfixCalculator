@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Postfix Calculator</string>
+    <string name="app_name" translatable="false">Postfix Calculator</string>
     <string name="help_text">
         <b>+</b> - additions. A + B. <i>(N-ary operator)</i>\n
         <b>-</b> - subtraction. A - B. <i>(N-ary operator)</i>\n
@@ -8,17 +8,17 @@
         <b>^</b> - power. A ^ B. <i>(Binary operator)</i>\n
         <b>( )</b> - parentheses.
     </string>
-    <string name="copyright">
+    <string name="copyright" translatable="false">
         Created by <b>TheEvilRoot</b>
     </string>
-    <string name="github">GitHub</string>
-    <string name="web">Web</string>
-    <string name="vk">VK</string>
-    <string name="hockeyapp">HockeyApp</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="web" translatable="false">Web</string>
+    <string name="vk" translatable="false">VK</string>
+    <string name="hockeyapp" translatable="false">HockeyApp</string>
     <string name="licenses_title">Licences</string>
 
 
-    <string name="mdi_license">Copyright © 2014, Austin Andrews (http://materialdesignicons.com/),\n
+    <string name="mdi_license" translatable="false">Copyright © 2014, Austin Andrews (http://materialdesignicons.com/),\n
 with Reserved Font Name Material Design Icons.\n
 Copyright © 2014, Google (http://www.google.com/design/)\n
 uses the license at https://github.com/google/material–design–icons/blob/master/LICENSE\n
@@ -115,7 +115,7 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM\n
 OTHER DEALINGS IN THE FONT SOFTWARE.</string>
 
-    <string name="kodein_license">The MIT License (MIT)\n
+    <string name="kodein_license" translatable="false">The MIT License (MIT)\n
 \n
 Copyright © 2018 KODEIN SAS\n
 \n
@@ -137,7 +137,7 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\n
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n
     </string>
     
-    <string name="rxj_license">
+    <string name="rxj_license" translatable="false">
         Copyright © 2016-present, RxJava Contributors.\n
 \n
 Licensed under the Apache License, Version 2.0 (the "License");\n
@@ -153,7 +153,7 @@ See the License for the specific language governing permissions and\n
 limitations under the License.
     </string>
 
-    <string name="rxa_license">
+    <string name="rxa_license" translatable="false">
         Copyright 2015 The RxAndroid authors\n
 \n
 Licensed under the Apache License, Version 2.0 (the "License");\n
@@ -169,7 +169,7 @@ See the License for the specific language governing permissions and\n
 limitations under the License.
     </string>
     
-    <string name="rxb_license">
+    <string name="rxb_license" translatable="false">
         Copyright © 2015 Jake Wharton\n
 \n
 Licensed under the Apache License, Version 2.0 (the "License");\n
@@ -185,7 +185,7 @@ See the License for the specific language governing permissions and\n
 limitations under the License.
     </string>
     
-    <string name="infinity_loading_license">
+    <string name="infinity_loading_license" translatable="false">
         Copyright 2016 Alexey Shklyaev\n
 \n
 Licensed under the Apache License, Version 2.0 (the "License");\n
@@ -201,7 +201,7 @@ See the License for the specific language governing permissions and\n
 limitations under the License.\n
     </string>
     
-    <string name="md_license">
+    <string name="md_license" translatable="false">
         Copyright 2018 Aidan Follestad\n
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n
 \n
@@ -209,4 +209,9 @@ http://www.apache.org/licenses/LICENSE-2.0\n
 \n
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
     </string>
+    <string name="invalid_input_error">Invalid input</string>
+    <string name="invalid_parenthesis">Invalid parenthesis</string>
+    <string name="error">Error %$1</string>
+    <string name="invalid_number">Invalid number</string>
+    <string name="calculate_text">Calculate</string>
 </resources>

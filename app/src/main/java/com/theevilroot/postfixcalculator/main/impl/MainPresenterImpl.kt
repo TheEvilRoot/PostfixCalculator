@@ -1,11 +1,13 @@
 package com.theevilroot.postfixcalculator.main.impl
 
 import android.annotation.SuppressLint
+import com.theevilroot.postfixcalculator.internal.PostfixError
 import com.theevilroot.postfixcalculator.main.MainPresenter
 import com.theevilroot.postfixcalculator.main.MainView
 import com.theevilroot.postfixcalculator.main.PostfixModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.lang.NumberFormatException
 import java.util.*
 
 class MainPresenterImpl (
@@ -25,7 +27,7 @@ class MainPresenterImpl (
                 view.setOutput("")
                 view.blockControl(false)
                 view.blockInput(false)
-                view.setError("Invalid input")
+                view.setError(PostfixError.InvalidInput)
                 return@subscribe
             }
             model.convert(inputString).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({ postfix ->
@@ -44,10 +46,11 @@ class MainPresenterImpl (
         view.setOutput("")
         view.blockControl(false)
         view.blockInput(false)
-        view.setError(thr.localizedMessage ?: when (thr) {
-            is EmptyStackException -> "Invalid parenthesis"
-            else -> thr.javaClass.simpleName
-        }, thr)
+        view.setError(when (thr) {
+            is EmptyStackException -> PostfixError.InvalidParenthesis
+            is NumberFormatException -> PostfixError.InvalidNumbers
+            else -> PostfixError.Other
+        }, thr.localizedMessage ?: thr.javaClass.simpleName)
     }
 
 }

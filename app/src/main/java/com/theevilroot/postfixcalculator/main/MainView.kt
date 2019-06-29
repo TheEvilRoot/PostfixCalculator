@@ -1,5 +1,7 @@
 package com.theevilroot.postfixcalculator.main
 
+import com.theevilroot.postfixcalculator.internal.PostfixError
+
 interface MainView {
 
     fun setLoading(shown: Boolean = true)
@@ -10,6 +12,6 @@ interface MainView {
 
     fun setOutput(output: String)
 
-    fun setError(message: String, throwable: Throwable? = null)
+    fun setError(error: PostfixError? = null, message: String = "")
 
 }

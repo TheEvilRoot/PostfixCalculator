@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="help_text">
+        <b>+</b> - сложение. A + B. <i>(N-арный оператор)</i>\n
+        <b>-</b> - вычитание. A - B. <i>(N-арный оператор)</i>\n
+        <b>*</b> - умножение. A * B. <i>(N-арный оператор)</i>\n
+        <b>/</b> - деление. A / B. <i>(N-арный оператор)</i>\n
+        <b>^</b> - возведение в степень. A ^ B. <i>(Бинарный оператор)</i>\n
+        <b>( )</b> - скобки.
+    </string>
+
+    <string name="licenses_title">Лицензии</string>
+    <string name="invalid_input_error">Неверный ввод</string>
+    <string name="invalid_parenthesis">Неправильно расставлены скобки</string>
+    <string name="error">Ошибка %$1</string>
+    <string name="invalid_number">Некорректное число</string>
+    <string name="calculate_text">Вычислить</string>
+</resources>
