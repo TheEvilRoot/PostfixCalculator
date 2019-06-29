@@ -4,6 +4,7 @@ Screenshots
 --------
 
 ![Screenshot](images/screen1.jpg)
+![Screenshot](images/screen2.jpg)
 
 
 License
