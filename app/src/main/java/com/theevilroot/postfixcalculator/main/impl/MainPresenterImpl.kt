@@ -6,6 +6,7 @@ import com.theevilroot.postfixcalculator.main.MainView
 import com.theevilroot.postfixcalculator.main.PostfixModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class MainPresenterImpl (
     private val view: MainView,
@@ -20,6 +21,7 @@ class MainPresenterImpl (
 
         model.checkInput(inputString).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({ succeed ->
             if (!succeed) {
+                view.setLoading(false)
                 view.setOutput("")
                 view.blockControl(false)
                 view.blockInput(false)
@@ -38,10 +40,14 @@ class MainPresenterImpl (
     }
 
     private fun error(thr: Throwable) {
+        view.setLoading(false)
         view.setOutput("")
         view.blockControl(false)
         view.blockInput(false)
-        view.setError(thr.localizedMessage, thr)
+        view.setError(thr.localizedMessage ?: when (thr) {
+            is EmptyStackException -> "Invalid parenthesis"
+            else -> thr.javaClass.simpleName
+        }, thr)
     }
 
 }
