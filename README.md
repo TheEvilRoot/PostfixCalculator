@@ -3,7 +3,7 @@
 Screenshots
 --------
 
-(Screenshot)[images/screen1.jpg]
+![Screenshot](images/screen1.jpg)
 
 
 License
