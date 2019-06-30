@@ -214,4 +214,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
     <string name="error">Error %1$s</string>
     <string name="invalid_number">Invalid number</string>
     <string name="calculate_text">Calculate</string>
+    <string name="input_hint">Expression...</string>
 </resources>

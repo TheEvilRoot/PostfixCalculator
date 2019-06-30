@@ -15,4 +15,5 @@
     <string name="error">Ошибка %1$s</string>
     <string name="invalid_number">Некорректное число</string>
     <string name="calculate_text">Вычислить</string>
+    <string name="input_hint">Выражение…</string>
 </resources>
