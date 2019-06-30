@@ -2,13 +2,15 @@ package com.theevilroot.postfixcalculator.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.list.customListAdapter
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.theevilroot.postfixcalculator.R
-import com.theevilroot.postfixcalculator.internal.PostfixError
+import com.theevilroot.postfixcalculator.internal.PostfixResult
+import com.theevilroot.postfixcalculator.internal.Presenter
+import com.theevilroot.postfixcalculator.internal.PresenterActivity
 import com.theevilroot.postfixcalculator.internal.visible
 import com.theevilroot.postfixcalculator.licenses.LicensesAdapter
 import com.theevilroot.postfixcalculator.links.LinksAdapter
@@ -20,7 +22,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class MainActivity: AppCompatActivity(), KodeinAware, MainView {
+class MainActivity: PresenterActivity(), KodeinAware, MainView {
 
     override val kodein: Kodein by kodein()
 
@@ -30,6 +32,8 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
     private val licensesAdapter: LicensesAdapter by instance()
     private val presenter: MainPresenter by lazy { MainPresenterImpl(this@MainActivity, model) }
 
+    override fun presenter(): Presenter = presenter
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +41,7 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
 
         setLoading(false)
         setOutput("")
-        setError()
+        clearError()
         blockControl(false)
         blockInput(false)
 
@@ -67,16 +71,16 @@ class MainActivity: AppCompatActivity(), KodeinAware, MainView {
         }
     }
 
-    override fun setError(error: PostfixError?, message: String) {
-        if (error == null) {
-            errorView.text = ""
+    override fun setError(@StringRes res: Int, args: String?) {
+        if (args == null) {
+            errorView.setText(res)
         } else {
-            if (error == PostfixError.Other) {
-                errorView.text = getString(error.res, message)
-            } else {
-                errorView.text = getString(error.res)
-            }
+            errorView.text = getString(res, args)
         }
+    }
+
+    override fun clearError() {
+        errorView.text = ""
     }
 
     override fun setOutput(output: String) {

@@ -1,6 +1,8 @@
 package com.theevilroot.postfixcalculator.main
 
-interface MainPresenter {
+import com.theevilroot.postfixcalculator.internal.Presenter
+
+interface MainPresenter: Presenter {
 
     fun calculate(inputString: String)
 

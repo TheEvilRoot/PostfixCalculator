@@ -1,27 +1,25 @@
 package com.theevilroot.postfixcalculator.main.impl
 
 import com.theevilroot.postfixcalculator.main.PostfixModel
-import io.reactivex.Single
 import java.lang.Math.pow
 import java.util.*
 
 class PostfixModelImpl: PostfixModel {
 
     private fun isOperator(c: Char): Boolean =
-        (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')')
+        c in setOf('+', '-', '*', '/', '^', '(', ')')
 
 
-    private fun isSpace(c: Char): Boolean =
-        c == ' '
+    private fun isSpace(c: Char): Boolean = c == ' '
 
 
     private fun lowerPrecedence(op1: Char, op2: Char): Boolean = when (op1) {
-            '+', '-' -> !(op2 == '+' || op2 == '-')
-            '*', '/' -> op2 == '^' || op2 == '('
-            '^' -> op2 == '('
-            '(' -> true
-            else -> false
-        }
+        '+', '-' -> op2 !in setOf('+', '-')
+        '*', '/' -> op2 in setOf('^', '(')
+        '^' -> op2 == '('
+        '(' -> true
+        else -> false
+    }
 
     fun convertToPostfix(infix: String): String {
         val operatorStack = Stack<String>()
@@ -53,10 +51,10 @@ class PostfixModelImpl: PostfixModel {
         return postfix.toString()
     }
 
-    fun evaluate(expr: String): Int {
-        val stack = Stack<Int>()
+    fun evaluate(expr: String): Double {
+        val stack = Stack<Double>()
         val tokenizer = StringTokenizer(expr)
-        var result: Int
+        var result: Double
 
         while (tokenizer.hasMoreTokens()) {
             val token = tokenizer.nextToken()
@@ -67,36 +65,35 @@ class PostfixModelImpl: PostfixModel {
                 result = evalSingleOp(token[0], op1, op2)
                 stack.push(result)
             } else
-                stack.push(token.toInt())
+                stack.push(token.toDouble())
         }
 
         result = stack.pop()
         return result
     }
 
-    private fun evalSingleOp(operation: Char, op1: Int, op2: Int): Int = when (operation) {
+    private fun evalSingleOp(operation: Char, op1: Double, op2: Double): Double = when (operation) {
         '+' -> op1 + op2
         '-' -> op1 - op2
         '*' -> op1 * op2
         '/' -> op1 / op2
-        '^' -> pow(op1.toDouble(), op2.toDouble()).toInt()
-        else -> 0
+        '^' -> pow(op1, op2)
+        else -> .0
     }
 
 
-    override fun checkInput(string: String): Single<Boolean> = Single.create {
+    override fun checkInput(string: String): Boolean {
         val regEx = """^[\d()+*^\-\s/]+$""".toRegex()
-        val result = string.matches(regEx)
 
-        it.onSuccess(result)
+        return string.matches(regEx)
     }
 
-    override fun convert(infix: String): Single<String> = Single.create {
-        it.onSuccess(convertToPostfix(infix))
+    override fun convert(infix: String): String {
+        return convertToPostfix(infix)
     }
 
-    override fun calculate(postfix: String): Single<Int> = Single.create {
-        it.onSuccess(evaluate(postfix))
+    override fun calculate(postfix: String): Double {
+        return evaluate(postfix)
     }
 
 }

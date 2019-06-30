@@ -1,13 +1,11 @@
 package com.theevilroot.postfixcalculator.main
 
-import io.reactivex.Single
-
 interface PostfixModel {
 
-    fun checkInput(string: String): Single<Boolean>
+    fun checkInput(string: String): Boolean
 
-    fun convert(infix: String): Single<String>
+    fun convert(infix: String): String
 
-    fun calculate(postfix: String): Single<Int>
+    fun calculate(postfix: String): Double
 
 }

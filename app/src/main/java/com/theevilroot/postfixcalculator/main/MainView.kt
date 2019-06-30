@@ -1,6 +1,7 @@
 package com.theevilroot.postfixcalculator.main
 
-import com.theevilroot.postfixcalculator.internal.PostfixError
+import androidx.annotation.StringRes
+import com.theevilroot.postfixcalculator.internal.PostfixResult
 
 interface MainView {
 
@@ -12,6 +13,8 @@ interface MainView {
 
     fun setOutput(output: String)
 
-    fun setError(error: PostfixError? = null, message: String = "")
+    fun setError(@StringRes res: Int, args: String? = null)
+
+    fun clearError()
 
 }

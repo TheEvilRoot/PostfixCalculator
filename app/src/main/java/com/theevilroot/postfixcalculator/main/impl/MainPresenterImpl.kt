@@ -1,56 +1,72 @@
 package com.theevilroot.postfixcalculator.main.impl
 
-import android.annotation.SuppressLint
-import com.theevilroot.postfixcalculator.internal.PostfixError
+import com.theevilroot.postfixcalculator.R
+import com.theevilroot.postfixcalculator.internal.PostfixResult
 import com.theevilroot.postfixcalculator.main.MainPresenter
 import com.theevilroot.postfixcalculator.main.MainView
 import com.theevilroot.postfixcalculator.main.PostfixModel
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import java.lang.NumberFormatException
+import java.lang.IllegalArgumentException
 import java.util.*
+import kotlin.NumberFormatException
 
 class MainPresenterImpl (
     private val view: MainView,
     private val model: PostfixModel
 ) : MainPresenter {
 
-    @SuppressLint("CheckResult")
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+
     override fun calculate(inputString: String) {
         view.setLoading()
+        view.clearError()
         view.blockControl(true)
         view.blockInput(true)
 
-        model.checkInput(inputString).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({ succeed ->
-            if (!succeed) {
-                view.setLoading(false)
-                view.setOutput("")
-                view.blockControl(false)
-                view.blockInput(false)
-                view.setError(PostfixError.InvalidInput)
-                return@subscribe
-            }
-            model.convert(inputString).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({ postfix ->
-                model.calculate(postfix).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({ result ->
-                    view.setOutput("$postfix = $result")
-                    view.blockInput(false)
-                    view.blockControl(false)
-                    view.setLoading(false)
-                }, this::error)
-            }, this::error)
-        }, this::error)
+        add(Single.fromCallable<Pair<String, Double>> {
+            val checkResult = model.checkInput(inputString)
+            if (!checkResult) throw IllegalArgumentException()
+
+            val postfixForm = model.convert(inputString)
+            val result = model.calculate(postfixForm)
+
+            postfixForm to result
+        }.subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe({
+            view.setOutput("${it.first} = ${it.second}")
+            view.blockControl(false)
+            view.blockInput(false)
+            view.setLoading(false)
+        }, {
+            error(when (it) {
+                is NumberFormatException -> PostfixResult.InvalidNumbers
+                is EmptyStackException -> PostfixResult.InvalidOperators
+                is IllegalArgumentException -> PostfixResult.InvalidInput
+                else -> PostfixResult.Other
+            }, it)
+
+        }))
     }
 
-    private fun error(thr: Throwable) {
+    private fun error(result: PostfixResult, thr: Throwable) {
         view.setLoading(false)
         view.setOutput("")
         view.blockControl(false)
         view.blockInput(false)
-        view.setError(when (thr) {
-            is EmptyStackException -> PostfixError.InvalidParenthesis
-            is NumberFormatException -> PostfixError.InvalidNumbers
-            else -> PostfixError.Other
-        }, thr.localizedMessage ?: thr.javaClass.simpleName)
+        when (result) {
+            PostfixResult.InvalidInput -> view.setError(R.string.invalid_input_error)
+            PostfixResult.InvalidOperators -> view.setError(R.string.invalid_parenthesis)
+            PostfixResult.InvalidNumbers -> view.setError(R.string.invalid_number)
+            PostfixResult.Other -> view.setError(R.string.error, thr.localizedMessage ?: thr.javaClass.simpleName)
+        }
+
     }
+
+    override fun clear() { compositeDisposable.clear() }
+
+    override fun add(disposable: Disposable) { compositeDisposable.add(disposable) }
 
 }
