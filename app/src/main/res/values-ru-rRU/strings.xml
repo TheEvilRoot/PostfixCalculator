@@ -12,7 +12,7 @@
     <string name="licenses_title">Лицензии</string>
     <string name="invalid_input_error">Неверный ввод</string>
     <string name="invalid_parenthesis">Неправильно расставлены скобки</string>
-    <string name="error">Ошибка %$1</string>
+    <string name="error">Ошибка %1$s</string>
     <string name="invalid_number">Некорректное число</string>
     <string name="calculate_text">Вычислить</string>
 </resources>

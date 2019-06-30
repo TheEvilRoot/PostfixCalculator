@@ -1,7 +1,6 @@
 package com.theevilroot.postfixcalculator.main
 
 import androidx.annotation.StringRes
-import com.theevilroot.postfixcalculator.internal.PostfixResult
 
 interface MainView {
 

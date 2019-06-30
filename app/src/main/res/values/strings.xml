@@ -211,7 +211,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
     </string>
     <string name="invalid_input_error">Invalid input</string>
     <string name="invalid_parenthesis">Invalid parenthesis</string>
-    <string name="error">Error %$1</string>
+    <string name="error">Error %1$s</string>
     <string name="invalid_number">Invalid number</string>
     <string name="calculate_text">Calculate</string>
 </resources>
