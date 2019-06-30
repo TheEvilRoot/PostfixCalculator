@@ -6,4 +6,5 @@
     <attr name="colorSecond" format="color|reference" />
     <attr name="colorThird" format="color|reference" />
     <attr name="colorHint" format="color|reference" />
+    <attr name="colorIconBadge" format="color|reference" />
 </resources>

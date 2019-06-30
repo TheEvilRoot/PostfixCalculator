@@ -18,6 +18,12 @@
         <item name="colorSecond">@color/colorSecond</item>
         <item name="colorThird">@color/colorThird</item>
         <item name="colorHint">#80000000</item>
+        <item name="colorIconBadge">#fff</item>
+
+        <item name="md_color_title">@color/colorTextDark</item>
+        <item name="md_color_content">@color/colorTextDark</item>
+        <item name="md_font_button">@color/colorPrimary</item>
+        <item name="md_background_color">#fff</item>
     </style>
 
     <style name="AppTheme.Dark" parent="AppTheme">
@@ -30,6 +36,12 @@
         <item name="colorFirst">#242424</item>
         <item name="colorSecond">#242424</item>
         <item name="colorThird">#242424</item>
+        <item name="colorIconBadge">#fff</item>
+
+        <item name="md_color_title">@color/colorText</item>
+        <item name="md_color_content">@color/colorText</item>
+        <item name="md_font_button">@color/colorPrimary</item>
+        <item name="md_background_color">#2C2C2C</item>
     </style>
 
 
