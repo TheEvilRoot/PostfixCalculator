@@ -3,8 +3,8 @@
 Screenshots
 --------
 
-![Screenshot](images/screen1.jpg)
-![Screenshot](images/screen2.jpg)
+![Screenshot](images/1.png)
+![Screenshot](images/3.png)
 
 
 License
