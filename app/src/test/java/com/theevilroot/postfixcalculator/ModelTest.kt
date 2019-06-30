@@ -20,7 +20,7 @@ class ModelTest {
         val postfix = model.convertToPostfix("(1 + 3 - (4 / 2)) * 1")
         val result = model.evaluate(postfix)
 
-        assertEquals(2, result)
+        assertEquals(2.0, result, 0.1)
     }
 
 }

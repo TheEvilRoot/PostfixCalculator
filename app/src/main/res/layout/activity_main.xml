@@ -58,7 +58,6 @@
             android:ems="10"
             android:hint="@string/input_hint"
             android:textColorHint="?attr/colorHint"
-            android:inputType="textPersonName"
             android:textColor="?attr/colorTextDark"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/clearButton"
