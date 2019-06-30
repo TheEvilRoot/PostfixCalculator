@@ -2,20 +2,20 @@ package com.theevilroot.postfixcalculator.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.list.customListAdapter
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.theevilroot.postfixcalculator.R
-import com.theevilroot.postfixcalculator.internal.PostfixResult
-import com.theevilroot.postfixcalculator.internal.Presenter
-import com.theevilroot.postfixcalculator.internal.PresenterActivity
-import com.theevilroot.postfixcalculator.internal.visible
+import com.theevilroot.postfixcalculator.internal.*
 import com.theevilroot.postfixcalculator.licenses.LicensesAdapter
 import com.theevilroot.postfixcalculator.links.LinksAdapter
 import com.theevilroot.postfixcalculator.links.LinksProvider
 import com.theevilroot.postfixcalculator.main.impl.MainPresenterImpl
+import daio.io.dresscode.dressCodeStyleId
+import daio.io.dresscode.matchDressCode
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -36,6 +36,7 @@ class MainActivity: PresenterActivity(), KodeinAware, MainView {
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
+        matchDressCode()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -65,9 +66,9 @@ class MainActivity: PresenterActivity(), KodeinAware, MainView {
 
     override fun setLoading(shown: Boolean) {
         if (shown) {
-            loading.progressColor = resources.getColor(R.color.colorButton)
+            loading.progressColor = themeColor(R.attr.colorPrimary)
         } else {
-            loading.progressColor = resources.getColor(R.color.colorFirst)
+            loading.progressColor = themeColor(R.attr.colorFirst)
         }
     }
 
@@ -100,6 +101,7 @@ class MainActivity: PresenterActivity(), KodeinAware, MainView {
             message(R.string.copyright)
             customListAdapter(linksAdapter)
             positiveButton(R.string.licenses_title) { showLicenses() }
+            negativeButton(R.string.theme_text) { toast( "Theme changed to: ${turnTheme()}").show() }
         }
     }
 

@@ -9,6 +9,8 @@ import com.theevilroot.postfixcalculator.links.LinksProvider
 import com.theevilroot.postfixcalculator.links.impl.LinksProviderImpl
 import com.theevilroot.postfixcalculator.main.PostfixModel
 import com.theevilroot.postfixcalculator.main.impl.PostfixModelImpl
+import daio.io.dresscode.DressCode
+import daio.io.dresscode.declareDressCode
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -29,8 +31,14 @@ class PostfixCalculator: Application(), KodeinAware {
         bind<LicensesAdapter>() with singleton { LicensesAdapter(instance()) }
     }
 
+    val themes = arrayOf(
+        DressCode("Light", R.style.AppTheme_Light),
+        DressCode("Dark", R.style.AppTheme_Dark)
+    )
+
     override fun onCreate() {
         super.onCreate()
+        declareDressCode(*themes)
     }
 
 }

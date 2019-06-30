@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorText" format="color|reference" />
+    <attr name="colorTextDark" format="color|reference" />
+    <attr name="colorFirst" format="color|reference" />
+    <attr name="colorSecond" format="color|reference" />
+    <attr name="colorThird" format="color|reference" />
+    <attr name="colorHint" format="color|reference" />
+</resources>

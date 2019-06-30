@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:background="?android:attr/colorBackground"
         android:layout_height="match_parent">
 
     <TextView
@@ -14,6 +15,7 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="?attr/colorTextDark"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +29,7 @@
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_info"
-            android:tint="@color/colorButton"
+            android:tint="?attr/colorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,8 +57,9 @@
             android:background="@drawable/bg_input"
             android:ems="10"
             android:hint="@string/input_hint"
+            android:textColorHint="?attr/colorHint"
             android:inputType="textPersonName"
-            android:textColor="@color/colorTextDark"
+            android:textColor="?attr/colorTextDark"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/clearButton"
             app:layout_constraintHorizontal_bias="0.0"
@@ -72,12 +75,12 @@
             android:background="@drawable/bg_close"
             android:cropToPadding="true"
             android:scaleType="center"
-            android:tint="@color/colorButton"
+            android:tint="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/inputView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/inputView"
             app:srcCompat="@drawable/ic_close"
-            android:contentDescription="Clear" />
+            android:contentDescription="@string/clear_text" />
 
     <Button
             android:id="@+id/calcButton"
@@ -85,9 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/calculate_text"
-            android:textColor="@color/colorText"
+            android:textColor="?attr/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputView" />
 
@@ -96,9 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:infl_backColor="@color/colorFirst"
+            app:infl_backColor="?attr/colorFirst"
             app:infl_drawBack="true"
-            app:infl_progressColor="@color/colorButton"
+            app:infl_progressColor="?attr/colorPrimary"
             app:infl_reverse="true"
             app:infl_strokeWidth="@dimen/loadingStrokeWidth"
             app:layout_constraintBottom_toTopOf="@+id/outputView"
@@ -117,7 +120,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:selectAllOnFocus="true"
-            android:textColor="@color/colorTextDark"
+            android:textColor="?attr/colorTextDark"
             android:textIsSelectable="true"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outputView" />
@@ -147,6 +150,7 @@
             android:lineSpacingExtra="12sp"
             android:text="@string/help_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="?attr/colorHint"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

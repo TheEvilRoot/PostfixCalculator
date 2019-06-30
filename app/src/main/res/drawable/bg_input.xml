@@ -6,9 +6,10 @@
         android:left="8dp"
         android:right="8dp"
         android:top="8dp" />
+
     <gradient android:type="linear"
-        android:startColor="@color/colorFirst"
-        android:centerColor="@color/colorSecond"
-        android:endColor="@color/colorThird" />
+        android:startColor="?attr/colorFirst"
+        android:centerColor="?attr/colorSecond"
+        android:endColor="?attr/colorThird" />
 
 </shape>

@@ -15,7 +15,8 @@ class LicensesProviderImpl (
         License("RxAndroid", R.string.rxa_license),
         License("RxBinding", R.string.rxb_license),
         License("Infinity Loading", R.string.infinity_loading_license),
-        License("Material Dialogs", R.string.md_license)
+        License("Material Dialogs", R.string.md_license),
+        License("dresscode", R.string.dresscode_license)
     )
 
     override fun getList(): List<License> =

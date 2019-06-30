@@ -16,4 +16,6 @@
     <string name="invalid_number">Некорректное число</string>
     <string name="calculate_text">Вычислить</string>
     <string name="input_hint">Выражение…</string>
+    <string name="clear_text">Очистить</string>
+    <string name="theme_text">Theme</string>
 </resources>
