@@ -244,4 +244,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
     <string name="input_hint">Expression…</string>
     <string name="clear_text">Clear</string>
     <string name="theme_text">Theme</string>
+    <string name="choose_theme_text">Choose theme</string>
 </resources>

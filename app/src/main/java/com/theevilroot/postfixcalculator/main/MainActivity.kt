@@ -101,7 +101,7 @@ class MainActivity: PresenterActivity(), KodeinAware, MainView {
             message(R.string.copyright)
             customListAdapter(linksAdapter)
             positiveButton(R.string.licenses_title) { showLicenses() }
-            negativeButton(R.string.theme_text) { toast( "Theme changed to: ${turnTheme()}").show() }
+            negativeButton(R.string.theme_text) { turnTheme { toast(it).show() } }
         }
     }
 

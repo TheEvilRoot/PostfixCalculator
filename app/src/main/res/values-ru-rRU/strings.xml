@@ -17,5 +17,6 @@
     <string name="calculate_text">Вычислить</string>
     <string name="input_hint">Выражение…</string>
     <string name="clear_text">Очистить</string>
-    <string name="theme_text">Theme</string>
+    <string name="theme_text">Изменить тему</string>
+    <string name="choose_theme_text">Выберите тему</string>
 </resources>

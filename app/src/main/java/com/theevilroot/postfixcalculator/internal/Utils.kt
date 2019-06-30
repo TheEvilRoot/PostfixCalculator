@@ -14,7 +14,11 @@ import android.util.TypedValue
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatActivity
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.list.listItems
 import com.theevilroot.postfixcalculator.PostfixCalculator
+import daio.io.dresscode.DressCode
 import daio.io.dresscode.dressCodeStyleId
 
 
@@ -41,15 +45,26 @@ fun Context.themeColor(@AttrRes res: Int): Int {
 fun AppCompatActivity.application(): PostfixCalculator =
     application as PostfixCalculator
 
-fun AppCompatActivity.turnTheme(): String {
+fun AppCompatActivity.turnTheme(notify: (String) -> Unit = { }) {
     application().run {
-        var index = themes.indexOfFirst { it.themeId == dressCodeStyleId }
-        if (index < 0 || index == application().themes.size - 1) index = -1
+        if (themes.size > 2) {
+            MaterialDialog(this, BottomSheet()).show {
+                title(com.theevilroot.postfixcalculator.R.string.choose_theme_text)
+                listItems(items = themes.map(DressCode::name)) { _, _, name ->
+                    val theme = themes.first { it.name == name }
 
-        val theme = themes[++index]
-        dressCodeStyleId = theme.themeId
+                    dressCodeStyleId = theme.themeId
+                    notify(theme.name)
+                }
+            }
+        } else {
+            var index = themes.indexOfFirst { it.themeId == dressCodeStyleId }
+            if (index < 0 || index == themes.size - 1) index = -1
 
-        return theme.name
+            val theme = themes[++index]
+            dressCodeStyleId = theme.themeId
+            notify(theme.name)
+        }
     }
 }
 
