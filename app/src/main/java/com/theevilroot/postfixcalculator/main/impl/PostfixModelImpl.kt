@@ -3,6 +3,7 @@ package com.theevilroot.postfixcalculator.main.impl
 import com.theevilroot.postfixcalculator.main.PostfixModel
 import java.lang.Math.pow
 import java.util.*
+import kotlin.math.pow
 
 class PostfixModelImpl: PostfixModel {
 
@@ -28,21 +29,23 @@ class PostfixModelImpl: PostfixModel {
         while (parser.hasMoreTokens()) {
             val token = parser.nextToken()
             val c = token[0]
-            if (token.length == 1 && isOperator(c)) {
-                while (!operatorStack.empty() && !lowerPrecedence(operatorStack.peek()[0], c))
-
-                    postfix.append(" ").append(operatorStack.pop())
-                if (c == ')') {
-                    var operator = operatorStack.pop()
-                    while (operator[0] != '(') {
-                        postfix.append(" ").append(operator)
-                        operator = operatorStack.pop()
+            when {
+                token.length == 1 && isOperator(c) -> {
+                    while (!operatorStack.empty() && !lowerPrecedence(operatorStack.peek()[0], c)) {
+                        postfix.append(" ").append(operatorStack.pop())
                     }
-                } else
-                    operatorStack.push(token)
-            } else if (token.length == 1 && isSpace(c)) {
-            } else {
-                postfix.append(" ").append(token)
+                    if (c == ')') {
+                        var operator = operatorStack.pop()
+                        while (operator[0] != '(') {
+                            postfix.append(" ").append(operator)
+                            operator = operatorStack.pop()
+                        }
+                    } else{
+                        operatorStack.push(token)
+                    }
+                }
+                token.length == 1 && isSpace(c) -> { } // no op
+                else -> postfix.append(" ").append(token)
             }
         }
         while (!operatorStack.empty())
@@ -77,7 +80,7 @@ class PostfixModelImpl: PostfixModel {
         '-' -> op1 - op2
         '*' -> op1 * op2
         '/' -> op1 / op2
-        '^' -> pow(op1, op2)
+        '^' -> op1.pow(op2)
         else -> .0
     }
 

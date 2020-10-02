@@ -51,7 +51,7 @@ class MainActivity: PresenterActivity(), KodeinAware, MainView {
             calcButton.isEnabled = it
             errorView.text = ""
         }
-        clearButton.setOnClickListener { inputView.text.clear() }
+        clearButton.setOnClickListener { inputView.text?.clear() }
         calcButton.setOnClickListener { presenter.calculate(inputView.text.toString()) }
         copyrightView.setOnClickListener { showCopyright() }
     }

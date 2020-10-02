@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/copyrightView"
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/inputView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             app:srcCompat="@drawable/ic_close"
             android:contentDescription="@string/clear_text" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/calcButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
             app:layout_constraintEnd_toStartOf="@+id/calcButton"
             app:layout_constraintTop_toBottomOf="@+id/inputView" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/outputView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             android:background="@drawable/bg_input"
             android:cursorVisible="false"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="none"
             android:selectAllOnFocus="true"
             android:textColor="?attr/colorTextDark"
             android:textIsSelectable="true"
@@ -154,6 +154,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/errorView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
